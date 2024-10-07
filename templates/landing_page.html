@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ company_name }}</title>
+    <style>
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            color: #e0e0e0;
+            background: linear-gradient(-45deg, 
+                #0a0a0a, #1a1a1a, #2a2a2a, #3a3a3a, 
+                #0a0a1a, #1a1a2a, #2a2a3a, #3a3a4a,
+                #0a1a0a, #1a2a1a, #2a3a2a, #3a4a3a,
+                #1a0a0a, #2a1a1a, #3a2a2a, #4a3a3a);
+            background-size: 400% 400%;
+            animation: gradientAnimation 20s ease infinite;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo-image {
+            width: 90px;
+            height: 50px;
+            margin-right: 5px;
+            object-fit: contain;
+        }
+        nav a {
+            color: #e0e0e0;
+            text-decoration: none;
+            margin-left: 20px;
+            transition: color 0.3s ease;
+        }
+        nav a:hover {
+            color: #3498db;
+        }
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80vh;
+        }
+        .hero-content {
+            max-width: 50%;
+        }
+        h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: #3498db;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            margin-top: 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: #2980b9;
+        }
+        .hero-image {
+            max-width: 50%;
+            text-align: center;
+        }
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+        }
+        .services, .testimonials {
+            margin-top: 15px; /* Reduced from 60px to 30px */
+        }
+        .services h2, .testimonials h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        .service-list, .testimonial-list {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .service-item, .testimonial-item {
+            background-color: rgba(52, 152, 219, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 35px;
+            width: calc(33.33% - 20px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .service-item:hover, .testimonial-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+        }
+        .service-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        .testimonial-item blockquote {
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        .testimonial-item cite {
+            display: block;
+            text-align: right;
+        }
+        .demo-video {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .demo-video video {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+
+        }
+
+        .demo-video:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+        }
+
+        .contact-us {
+            margin-top: 60px;
+            text-align: center;
+        }
+        .contact-us h2 {
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .social-links a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover {
+            color: #3498db;
+        }
+
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 150px; /* Reduced from 300px to 150px */
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -75px; /* Half of the new width */
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip .tooltiptext img {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+            max-height: 100px; /* Added max-height for thumbnail size */
+            object-fit: cover; /* Ensures the image covers the area without stretching */
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .tooltip .tooltiptext img {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div class="logo-placeholder">
+                    <img src="{{ url_for('static', filename='logo.jpeg') }}" alt="{{ company_name }} Logo" class="logo-image">
+                </div>
+            </div>
+            <nav>
+                <a href="#">PRODUCTS</a>
+                <div class="tooltip">
+                    <a href="https://medium.com/@vipul-kmr" target="_blank">RESOURCES</a>
+                </div>
+                <a href="#" class="cta-button">GET STARTED</a>
+            </nav>
+        </header>
+        
+        <main>
+            <section class="hero">
+                <div class="hero-content">
+                    <h1>{{ hero_title }}</h1>
+                    <p>{{ hero_description }}</p>
+                </div>
+                <div class="hero-image">
+                    <img src="{{ url_for('static', filename='hero2.png') }}" alt="Hero Image" style="width: 60%; height: auto; object-fit: contain;">
+                </div>
+            </section>
+            
+
+            <section class="services">
+                <h2>Our Services</h2>
+                <div class="service-list" style="display: flex; justify-content: space-between; flex-wrap: nowrap;">
+                    {% for service in services %}
+                        <div class="service-item" style="flex: 1; margin: 0 10px;">
+                            <img src="{{ url_for('static', filename=service.image_placeholder) }}" alt="{{ service.title }}" width="24" height="24" style="vertical-align: middle; margin-right: 10px;">
+                            <h3 style="display: inline-block; vertical-align: middle;">{{ service.title }}</h3>
+                            <p>{{ service.description }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <h2 style="text-align: center; margin-bottom: 10px; margin-top: 60px">See Our Solution in Action</h2>
+            <section class="demo-video">
+                <video controls>
+                    <source src="{{ demo_video }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </section>
+
+            <section class="testimonials">
+                <h2>What Our Clients Say</h2>
+                <div class="testimonial-list">
+                    {% for testimonial in testimonials %}
+                        <div class="testimonial-item">
+                            <blockquote>{{ testimonial.quote }}</blockquote>
+                            <cite>{{ testimonial.author }}</cite>
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <section class="contact-us">
+                <h2>Contact Us</h2>
+                <div class="social-links">
+                    <a href="https://twitter.com/your_twitter_handle" target="_blank">Twitter</a>
+                    <a href="https://www.linkedin.com/company/your_company" target="_blank">LinkedIn</a>
+                    <a href="mailto:your_business_email@example.com">Email</a>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
